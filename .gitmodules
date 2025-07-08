@@ -1,3 +1,6 @@
 [submodule "authentication"]
 	path = authentication
 	url = git@github.com:Beaconfire-Jul-2025/Authentication.git
+[submodule "EmployeeService"]
+	path = EmployeeService
+	url = git@github.com:Beaconfire-Jul-2025/EmployeeService.git
