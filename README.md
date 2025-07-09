@@ -1,1 +1,93 @@
-# docker
+# Employee & HR Onboarding Portal
+
+This project implements a microservices-based web application for managing employee onboarding. It includes services for user authentication, employee data management, housing logistics, email communication, and centralized configuration and service discovery.
+
+## 🚀 How to Run
+
+### 1. Start Infrastructure Services
+
+This will start databases, message brokers, and developer tools like LocalStack and Mongo Express.
+
+```bash
+docker-compose -f docker-compose.infra.yaml up -d
+```
+
+### 2. Start Core Backend Services
+
+This will spin up infrastructure services, config server, service registry, API gateway, and authentication service.
+
+```bash
+docker-compose -f docker-compose.base.yaml up -d
+```
+
+---
+
+## 📌 Project Goal
+
+We want to create an employee and HR website portal for managing the new employee onboarding process. Employees will be able to:
+
+* Update personal information
+* Upload required documents for identification and work authorization
+* Monitor their housing situation
+
+HR will be able to:
+
+* Access employee information
+* Make changes regarding onboarding status
+* Manage housing assignments
+
+---
+
+## 🧩 System Design Overview
+
+### Microservices Architecture
+
+This project is structured as a set of Spring Boot-based microservices, coordinated using a centralized configuration server and service discovery.
+
+### Core Services
+
+| Service                 | Description                                                |
+| ----------------------- | ---------------------------------------------------------- |
+| **Authentication**      | Manages login and identity verification                    |
+| **Employee Service**    | Handles personal and employment details (uses MongoDB)     |
+| **Housing Service**     | Manages employee housing status and records                |
+| **Application Service** | Manages onboarding application workflow                    |
+| **Email Service**       | Sends email notifications (via RabbitMQ)                   |
+| **Frontend**            | React-based user interface for employees and HR            |
+
+### Supporting Services
+
+| Service           | Description                                            |
+| ----------------- | ------------------------------------------------------ |
+| **Config Server** | Central configuration source for all services          |
+| **Eureka Server** | Service registry for discovery of microservices        |
+| **Gateway**       | API Gateway for routing requests to services           |
+| **MySQL**         | Stores structured data like user, application and housing info |
+| **MongoDB**       | Stores employee data                                   |
+| **RabbitMQ**      | Message broker for async communication (email service) |
+| **LocalStack**    | Emulates AWS services for testing (e.g., S3 uploads)   |
+| **Mongo Express** | Web UI for interacting with MongoDB                    |
+
+---
+
+## 🔧 Configuration
+
+### Volumes and Initialization Scripts
+
+* MySQL initializes with scripts in `./mysql`
+* MongoDB uses `./mongodb/mongo-init.js`
+
+### Environment Variables
+
+Each service uses appropriate Spring Boot profiles and environment variables for connecting to other services, databases, and frontend.
+
+---
+
+## 📝 Notes
+
+* Ensure Docker and Docker Compose are installed on your machine.
+* Initial startup may take time as all services build and initialize.
+* Access the React frontend at: `http://localhost:3000`
+* Eureka dashboard: `http://localhost:8761`
+* Mongo Express UI: `http://localhost:8081`
+* RabbitMQ Management UI: `http://localhost:15672` (default user: `guest`, password: `guest`)
