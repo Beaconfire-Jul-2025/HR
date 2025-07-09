@@ -4,3 +4,24 @@
 [submodule "EmployeeService"]
 	path = EmployeeService
 	url = git@github.com:Beaconfire-Jul-2025/EmployeeService.git
+[submodule "EmailService"]
+	path = EmailService
+	url = git@github.com:Beaconfire-Jul-2025/EmailService.git
+[submodule "HousingService"]
+	path = HousingService
+	url = git@github.com:Beaconfire-Jul-2025/HousingService.git
+[submodule "ApplicationService"]
+	path = ApplicationService
+	url = git@github.com:Beaconfire-Jul-2025/ApplicationService.git
+[submodule "Frontend"]
+	path = Frontend
+	url = git@github.com:Beaconfire-Jul-2025/Frontend.git
+[submodule "ConfigServer"]
+	path = ConfigServer
+	url = git@github.com:Beaconfire-Jul-2025/ConfigServer.git
+[submodule "Eureka"]
+	path = Eureka
+	url = git@github.com:Beaconfire-Jul-2025/Eureka.git
+[submodule "Gateway"]
+	path = Gateway
+	url = git@github.com:Beaconfire-Jul-2025/Gateway.git
