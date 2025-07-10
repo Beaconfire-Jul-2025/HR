@@ -32,7 +32,7 @@ services:
     extends:
       file: docker-compose.infra.yaml
       service: localstack
-  
+
   config-server:
     build: ./ConfigServer
     container_name: config-server
@@ -65,19 +65,73 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     depends_on:
       - eureka-server
-
+  
   authentication:
     restart: on-failure
-    build:
-      context: ./authentication
-      dockerfile: Dockerfile
+    build: ./authentication
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/AuthenticationService?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: mysecretpassword
-      FRONTEND_URL: http://localhost:5173 # Frontend URL for development
+      FRONTEND_URL: http://localhost:4200 # Frontend URL for development
     ports:
       - "8081:8081"
     depends_on:
       mysql:
         condition: service_healthy
+
+  employee-service:
+    build: ./EmployeeService
+    container_name: employee-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mysql
+      - config-server
+      - eureka-server
+
+  application-service:
+    build: ./ApplicationService
+    container_name: application-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mysql
+      - config-server
+      - eureka-server
+
+  housing-service:
+    build: ./HousingService
+    container_name: housing-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb
+      - config-server
+      - eureka-server
+
+  email-service:
+    build: ./EmailService
+    container_name: email-service
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - rabbitmq
+      - config-server
+      - eureka-server
+
+  frontend:
+    build: ./Frontend
+    container_name: react-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
