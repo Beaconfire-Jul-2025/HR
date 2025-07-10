@@ -72,8 +72,8 @@ This project is structured as a set of Spring Boot-based microservices, coordina
 | ----------------------- | ---------------------------------------------------------- |------|
 | **Authentication**      | Manages login and identity verification                    | 8081 |
 | **Employee Service**    | Handles personal and employment details (uses MongoDB)     | 8082 |
-| **Housing Service**     | Manages employee housing status and records                | 8083 |
-| **Application Service** | Manages onboarding application workflow                    | 8084 |
+| **Application Service** | Manages onboarding application workflow                    | 8083 |
+| **Housing Service**     | Manages employee housing status and records                | 8084 |
 | **Email Service**       | Sends email notifications (via RabbitMQ)                   | 8085 |
 | **Composite Service**   | Aggregates multiple services for higher-level functions    | 8085 |
 | **Frontend**            | React-based user interface for employees and HR            | 5173 |
