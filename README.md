@@ -2,6 +2,28 @@
 
 This project implements a microservices-based web application for managing employee onboarding. It includes services for user authentication, employee data management, housing logistics, email communication, and centralized configuration and service discovery.
 
+
+## 💻 Getting Started
+
+Before you can run the application, you'll need to clone the repository and ensure all necessary submodules are initialized.
+
+### 1\. Clone the Repository
+
+To get started, clone the repository to your local machine using Git:
+
+```bash
+git clone https://github.com/Beaconfire-Jul-2025/HR.git
+```
+
+### 2\. Initialize Submodules
+
+This project uses Git submodules. After cloning, navigate into the project directory and initialize them recursively:
+
+```bash
+cd HR
+git submodule update --init --recursive
+```
+
 ## 🚀 How to Run
 
 ### 1. Start Infrastructure Services
