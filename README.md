@@ -80,16 +80,16 @@ This project is structured as a set of Spring Boot-based microservices, coordina
 
 ### Supporting Services
 
-| Service           | Description                                            |
-| ----------------- | ------------------------------------------------------ |
-| **Config Server** | Central configuration source for all services          |
-| **Eureka Server** | Service registry for discovery of microservices        |
-| **Gateway**       | API Gateway for routing requests to services           |
-| **MySQL**         | Stores structured data like user, application and housing info |
-| **MongoDB**       | Stores employee data                                   |
-| **RabbitMQ**      | Message broker for async communication (email service) |
-| **LocalStack**    | Emulates AWS services for testing (e.g., S3 uploads)   |
-| **Mongo Express** | Web UI for interacting with MongoDB                    |
+| Service           | Description                                            | Port (For Development) |
+| ----------------- | ------------------------------------------------------ |------------------------|
+| **Config Server** | Central configuration source for all services          | 8888 |
+| **Eureka Server** | Service registry for discovery of microservices        | 8761 |
+| **Gateway**       | API Gateway for routing requests to services           | 8080 |
+| **MySQL**         | Stores structured data like user, application and housing info | 3306 |
+| **MongoDB**       | Stores employee data                                   | 27017 |
+| **RabbitMQ**      | Message broker for async communication (email service) | 5672, 15672 |
+| **LocalStack**    | Emulates AWS services for testing (e.g., S3 uploads)   | 4566,4571 |
+| **Mongo Express** | Web UI for interacting with MongoDB                    | 8090 |
 
 ---
 
@@ -112,5 +112,5 @@ Each service uses appropriate Spring Boot profiles and environment variables for
 * Initial startup may take time as all services build and initialize.
 * Access the React frontend at: `http://localhost:3000`
 * Eureka dashboard: `http://localhost:8761`
-* Mongo Express UI: `http://localhost:8081`
+* Mongo Express UI: `http://localhost:8090`
 * RabbitMQ Management UI: `http://localhost:15672` (default user: `guest`, password: `guest`)
