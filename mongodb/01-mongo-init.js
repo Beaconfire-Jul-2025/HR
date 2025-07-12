@@ -1,226 +1,222 @@
-db = db.getSiblingDB('HR');
+db = db.getSiblingDB('EmployeeService');
 
 db.createCollection("Employee", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["ID", "UserID", "FirstName", "LastName", "Email"],
+      required: ["userId", "firstName", "lastName", "email"],
       properties: {
-        ID: {
+        userId: {
           bsonType: "string",
           description: "Employee ID - required"
         },
-        UserID: {
-          bsonType: "string",
-          description: "Reference to User ID from Authentication Service - required"
-        },
-        FirstName: {
+        firstName: {
           bsonType: "string",
           description: "Employee first name - required"
         },
-        LastName: {
+        lastName: {
           bsonType: "string",
           description: "Employee last name - required"
         },
-        MiddleName: {
+        middleName: {
           bsonType: "string",
           description: "Employee middle name - optional"
         },
-        PreferredName: {
+        preferredName: {
           bsonType: "string",
           description: "Employee preferred name - optional"
         },
-        AvatarPath: {
+        avatarPath: {
           bsonType: "string",
           description: "Path to employee's avatar picture - optional"
         },
-        Email: {
+        email: {
           bsonType: "string",
           description: "Employee email - required"
         },
-        CellPhone: {
+        cellPhone: {
           bsonType: "string",
           description: "Employee cell phone - optional"
         },
-        WorkPhone: {
+        workPhone: {
           bsonType: "string",
           description: "Employee work phone - optional"
         },
-        Gender: {
+        gender: {
           bsonType: "string",
           description: "Employee gender - optional"
         },
-        SSN: {
+        ssn: {
           bsonType: "string",
           description: "Employee SSN - optional"
         },
-        DOB: {
+        dob: {
           bsonType: "date",
           description: "Employee date of birth - optional"
         },
-        StartDate: {
+        startDate: {
           bsonType: "date",
           description: "Employee start date - optional"
         },
-        EndDate: {
+        endDate: {
           bsonType: "date",
           description: "Employee end date - optional"
         },
-        HouseID: {
+        houseId: {
           bsonType: "string",
           description: "Reference to House ID - optional"
         },
-        Addresses: {
+        addresses: {
           bsonType: "array",
           description: "Array of employee's primary and secondary addresses",
           items: {
             bsonType: "object",
-            required: ["Type", "AddressLine1", "City", "State", "ZipCode"],
+            required: ["type", "addressLine1", "city", "state", "zipCode"],
             properties: {
-              ID: { bsonType: "string" },
-              Type: {
+              id: { bsonType: "string" },
+              type: {
                 bsonType: "string",
                 enum: ["PRIMARY", "SECONDARY"],
                 description: "Type of address (PRIMARY or SECONDARY)"
               },
-              AddressLine1: { bsonType: "string" },
-              AddressLine2: { bsonType: "string" },
-              City: { bsonType: "string" },
-              State: { bsonType: "string" },
-              ZipCode: { bsonType: "string" }
+              addressLine1: { bsonType: "string" },
+              addressLine2: { bsonType: "string" },
+              city: { bsonType: "string" },
+              state: { bsonType: "string" },
+              zipCode: { bsonType: "string" }
             }
           }
         },
-        WorkAuthorization: {
+        workAuthorization: {
           bsonType: "object",
           description: "Employee's work authorization details - optional",
           properties: {
-            IsUSCitizen: {
+            isUsCitizen: {
               bsonType: "bool",
               description: "True if US Citizen"
             },
-            GreenCardHolder: {
+            greenCardHolder: {
               bsonType: "bool",
               description: "True if Green Card Holder"
             },
-            Type: {
+            type: {
               bsonType: "string",
               enum: ["H1B", "L2", "F1", "H4", "OTHER", "N/A"],
               description: "Type of work authorization (e.g., H1B, L2, F1, H4, OTHER)"
             },
-            StartDate: {
+            startDate: {
               bsonType: "date",
               description: "Work authorization start date"
             },
-            EndDate: {
+            endDate: {
               bsonType: "date",
               description: "Work authorization end date"
             },
-            LastModificationDate: {
+            lastModificationDate: {
               bsonType: "date",
               description: "Last modification date of work authorization status"
             }
           }
         },
-        DriverLicense: {
+        driverLicense: {
           bsonType: "object",
           description: "Employee's driver license information - optional",
           properties: {
-            HasLicense: {
+            hasLicense: {
               bsonType: "bool",
               description: "True if employee has a driver's license"
             },
-            LicenseNumber: {
+            licenseNumber: {
               bsonType: "string",
               description: "Driver license number"
             },
-            ExpirationDate: {
+            expirationDate: {
               bsonType: "date",
               description: "Driver license expiration date"
             }
           }
         },
-        EmergencyContacts: {
+        emergencyContacts: {
           bsonType: "array",
           description: "Array of emergency contact information",
           items: {
             bsonType: "object",
-            required: ["FirstName", "LastName", "Relationship"],
+            required: ["firstName", "lastName", "relationship"],
             properties: {
-              ID: { bsonType: "string" },
-              FirstName: { bsonType: "string" },
-              LastName: { bsonType: "string" },
-              MiddleName: { bsonType: "string" },
-              CellPhone: { bsonType: "string" },
-              AlternatePhone: { bsonType: "string" },
-              Email: { bsonType: "string" },
-              Relationship: { bsonType: "string" },
-              Address: {
+              id: { bsonType: "string" },
+              firstName: { bsonType: "string" },
+              lastName: { bsonType: "string" },
+              middleName: { bsonType: "string" },
+              cellPhone: { bsonType: "string" },
+              alternatePhone: { bsonType: "string" },
+              email: { bsonType: "string" },
+              relationship: { bsonType: "string" },
+              address: {
                 bsonType: "object",
                 description: "Address of the emergency contact - optional",
                 properties: {
-                  AddressLine1: { bsonType: "string" },
-                  AddressLine2: { bsonType: "string" },
-                  City: { bsonType: "string" },
-                  State: { bsonType: "string" },
-                  ZipCode: { bsonType: "string" }
+                  addressLine1: { bsonType: "string" },
+                  addressLine2: { bsonType: "string" },
+                  city: { bsonType: "string" },
+                  state: { bsonType: "string" },
+                  zipCode: { bsonType: "string" }
                 }
               }
             }
           }
         },
-        References: {
+        references: {
           bsonType: "array",
           description: "Array of professional/personal references",
           items: {
             bsonType: "object",
-            required: ["FirstName", "LastName", "Relationship"],
+            required: ["firstName", "lastName", "relationship"],
             properties: {
-              ID: { bsonType: "string" },
-              FirstName: { bsonType: "string" },
-              LastName: { bsonType: "string" },
-              MiddleName: { bsonType: "string" },
-              Phone: { bsonType: "string" },
-              Email: { bsonType: "string" },
-              Relationship: { bsonType: "string" },
-              Address: {
+              id: { bsonType: "string" },
+              firstName: { bsonType: "string" },
+              lastName: { bsonType: "string" },
+              middleName: { bsonType: "string" },
+              phone: { bsonType: "string" },
+              email: { bsonType: "string" },
+              relationship: { bsonType: "string" },
+              address: {
                 bsonType: "object",
                 description: "Address of the reference - optional",
                 properties: {
-                  AddressLine1: { bsonType: "string" },
-                  AddressLine2: { bsonType: "string" },
-                  City: { bsonType: "string" },
-                  State: { bsonType: "string" },
-                  ZipCode: { bsonType: "string" }
+                  addressLine1: { bsonType: "string" },
+                  addressLine2: { bsonType: "string" },
+                  city: { bsonType: "string" },
+                  state: { bsonType: "string" },
+                  zipCode: { bsonType: "string" }
                 }
               }
             }
           }
         },
-        PersonalDocuments: {
+        personalDocuments: {
           bsonType: "array",
           description: "Array of personal documents, categorized by type",
           items: {
             bsonType: "object",
-            required: ["Type", "Path", "Title"],
+            required: ["type", "path", "title"],
             properties: {
-              ID: { bsonType: "string" },
-              Type: {
+              id: { bsonType: "string" },
+              type: {
                 bsonType: "string",
                 enum: ["DRIVER_LICENSE_PROOF", "WORK_AUTHORIZATION_PROOF", "SSN_CARD", "PASSPORT", "OTHER"],
                 description: "Type of document (e.g., DRIVER_LICENSE_PROOF, WORK_AUTHORIZATION_PROOF)"
               },
-              Path: {
+              path: {
                 bsonType: "string",
                 description: "Path to the stored document (e.g., S3 URL)"
               },
-              Title: { bsonType: "string" },
-              Comment: { bsonType: "string" },
-              CreateDate: { bsonType: "date" }
+              title: { bsonType: "string" },
+              comment: { bsonType: "string" },
+              createDate: { bsonType: "date" }
             }
           }
         },
-        ApplicationType: {
+        applicationType: {
           bsonType: "string",
           description: "Application type - optional"
         }

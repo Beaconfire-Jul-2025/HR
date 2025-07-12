@@ -3,48 +3,48 @@ USE ApplicationService;
 
 -- ApplicationWorkFlow table
 CREATE TABLE ApplicationWorkFlow (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    EmployeeID VARCHAR(100) NOT NULL,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    Status VARCHAR(50) DEFAULT 'PENDING',
-    Comment TEXT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    employeeId VARCHAR(100) NOT NULL,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'PENDING',
+    comment TEXT,
     
-    INDEX idx_employee_id (EmployeeID),
-    INDEX idx_status (Status),
-    INDEX idx_create_date (CreateDate)
+    INDEX idx_employee_id (employeeId),
+    INDEX idx_status (status),
+    INDEX idx_create_date (createDate)
 );
 
 -- DigitalDocument table
 CREATE TABLE DigitalDocument (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    Type VARCHAR(100) NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR(100) NOT NULL,
     isRequired BOOLEAN DEFAULT FALSE,
-    Path VARCHAR(500) NOT NULL,
-    Description TEXT,
-    Title VARCHAR(255),
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    path VARCHAR(500) NOT NULL,
+    description TEXT,
+    title VARCHAR(255),
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    INDEX idx_type (Type),
+    INDEX idx_type (type),
     INDEX idx_required (isRequired),
-    INDEX idx_title (Title)
+    INDEX idx_title (title)
 );
 
 -- Add constraints and additional indexes
 ALTER TABLE ApplicationWorkFlow
-ADD CONSTRAINT chk_status CHECK (Status IN ('OPEN', 'COMPLETED', 'REJECTED'));
+ADD CONSTRAINT chk_status CHECK (status IN ('OPEN', 'COMPLETED', 'REJECTED', 'PENDING')); -- Added 'PENDING' to the check constraint
 
 -- Optional: Create a junction table if documents are linked to specific workflow instances
 CREATE TABLE ApplicationWorkFlowDocument (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    ApplicationWorkFlowID INT NOT NULL,
-    DigitalDocumentID INT NOT NULL,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    applicationWorkFlowId INT NOT NULL,
+    digitalDocumentId INT NOT NULL,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (ApplicationWorkFlowID) REFERENCES ApplicationWorkFlow(ID) ON DELETE CASCADE,
-    FOREIGN KEY (DigitalDocumentID) REFERENCES DigitalDocument(ID) ON DELETE CASCADE,
-    UNIQUE KEY unique_workflow_document (ApplicationWorkFlowID, DigitalDocumentID),
-    INDEX idx_workflow_id (ApplicationWorkFlowID),
-    INDEX idx_document_id (DigitalDocumentID)
+    FOREIGN KEY (applicationWorkFlowId) REFERENCES ApplicationWorkFlow(id) ON DELETE CASCADE,
+    FOREIGN KEY (digitalDocumentId) REFERENCES DigitalDocument(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_workflow_document (applicationWorkFlowId, digitalDocumentId),
+    INDEX idx_workflow_id (applicationWorkFlowId),
+    INDEX idx_document_id (digitalDocumentId)
 );

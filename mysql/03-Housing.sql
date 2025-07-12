@@ -3,84 +3,84 @@ USE HousingService;
 
 -- Landlord table
 CREATE TABLE Landlord (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    FirstName VARCHAR(100) NOT NULL,
-    LastName VARCHAR(100) NOT NULL,
-    Email VARCHAR(255) NOT NULL UNIQUE,
-    CellPhone VARCHAR(20),
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(100) NOT NULL,
+    lastName VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    cellPhone VARCHAR(20),
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    INDEX idx_name (FirstName, LastName),
-    INDEX idx_email (Email),
-    INDEX idx_phone (CellPhone)
+    INDEX idx_name (firstName, lastName),
+    INDEX idx_email (email),
+    INDEX idx_phone (cellPhone)
 );
 
 -- House table
 CREATE TABLE House (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    LandlordID INT NOT NULL,
-    Address VARCHAR(500) NOT NULL,
-    MaxOccupant INT NOT NULL DEFAULT 1,
-    Description TEXT,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    landlordId INT NOT NULL,
+    address VARCHAR(500) NOT NULL,
+    maxOccupant INT NOT NULL DEFAULT 1,
+    description TEXT,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (LandlordID) REFERENCES Landlord(ID) ON DELETE CASCADE,
-    INDEX idx_landlord_id (LandlordID),
-    INDEX idx_address (Address(100)),
-    INDEX idx_max_occupant (MaxOccupant)
+    FOREIGN KEY (landlordId) REFERENCES Landlord(id) ON DELETE CASCADE,
+    INDEX idx_landlord_id (landlordId),
+    INDEX idx_address (address(100)),
+    INDEX idx_max_occupant (maxOccupant)
 );
 
 -- Facility table
 CREATE TABLE Facility (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    HouseID INT NOT NULL,
-    Type VARCHAR(100) NOT NULL,
-    Quantity INT NOT NULL DEFAULT 1,
-    Description TEXT,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    houseId INT NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    description TEXT,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (HouseID) REFERENCES House(ID) ON DELETE CASCADE,
-    INDEX idx_house_id (HouseID),
-    INDEX idx_type (Type),
-    INDEX idx_quantity (Quantity)
+    FOREIGN KEY (houseId) REFERENCES House(id) ON DELETE CASCADE,
+    INDEX idx_house_id (houseId),
+    INDEX idx_type (type),
+    INDEX idx_quantity (quantity)
 );
 
 -- FacilityReport table
 CREATE TABLE FacilityReport (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    FacilityID INT NOT NULL,
-    EmployeeID VARCHAR(100) NOT NULL,
-    Title VARCHAR(255) NOT NULL,
-    Description TEXT,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    facilityId INT NOT NULL,
+    employeeId VARCHAR(100) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (FacilityID) REFERENCES Facility(ID) ON DELETE CASCADE,
-    INDEX idx_facility_id (FacilityID),
-    INDEX idx_employee_id (EmployeeID),
-    INDEX idx_title (Title),
-    INDEX idx_create_date (CreateDate)
+    FOREIGN KEY (facilityId) REFERENCES Facility(id) ON DELETE CASCADE,
+    INDEX idx_facility_id (facilityId),
+    INDEX idx_employee_id (employeeId),
+    INDEX idx_title (title),
+    INDEX idx_create_date (createDate)
 );
 
 -- FacilityReportDetail table
 CREATE TABLE FacilityReportDetail (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    FacilityReportID INT NOT NULL,
-    EmployeeID VARCHAR(100) NOT NULL,
-    Comment TEXT NOT NULL,
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    facilityReportId INT NOT NULL,
+    employeeId VARCHAR(100) NOT NULL,
+    comment TEXT NOT NULL,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (FacilityReportID) REFERENCES FacilityReport(ID) ON DELETE CASCADE,
-    INDEX idx_facility_report_id (FacilityReportID),
-    INDEX idx_employee_id (EmployeeID),
-    INDEX idx_create_date (CreateDate)
+    FOREIGN KEY (facilityReportId) REFERENCES FacilityReport(id) ON DELETE CASCADE,
+    INDEX idx_facility_report_id (facilityReportId),
+    INDEX idx_employee_id (employeeId),
+    INDEX idx_create_date (createDate)
 );
 
 -- Add check constraints
 ALTER TABLE House
-ADD CONSTRAINT chk_max_occupant CHECK (MaxOccupant > 0);
+ADD CONSTRAINT chk_max_occupant CHECK (maxOccupant > 0);
 
 ALTER TABLE Facility
-ADD CONSTRAINT chk_quantity CHECK (Quantity > 0);
+ADD CONSTRAINT chk_quantity CHECK (quantity > 0);
