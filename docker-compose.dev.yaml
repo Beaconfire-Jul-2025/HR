@@ -3,6 +3,8 @@ services:
     extends:
       file: docker-compose.infra.yaml
       service: mysql
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
       timeout: 20s
@@ -13,6 +15,8 @@ services:
     extends:
       file: docker-compose.infra.yaml
       service: mongodb
+    volumes:
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   rabbitmq:
     extends:
@@ -28,12 +32,17 @@ services:
     extends:
       file: docker-compose.infra.yaml
       service: localstack
-  
+
   config-server:
     build: ./ConfigServer
     container_name: config-server
     ports:
       - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/config
+    volumes:
+      - ./config:/config # Mount your config directory here
     depends_on:
       - mysql
 
@@ -72,3 +81,27 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+
+  email-service:
+    build:
+      context: ./EmailService
+      dockerfile: Dockerfile
+    container_name: email-service
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      MAIL_USERNAME: YOUR_MAIL_USERNAME
+      MAIL_PASSWORD: YOUR_MAIL_PASSWORD
+      MAIL_HOST: YOUR_MAIL_HOST
+      MAIL_PORT: YOUR_MAIL_PORT
+    depends_on:
+      - config-server
+      - eureka-server
+      - rabbitmq
+    secrets:
+      - email
+
+secrets:
+  email:
+    file: ./secrets/mail.txt

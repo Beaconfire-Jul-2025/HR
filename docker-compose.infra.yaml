@@ -21,7 +21,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongodb:/docker-entrypoint-initdb.d
 
   rabbitmq:
     image: rabbitmq:4-management
@@ -54,9 +54,16 @@ services:
     container_name: localstack
     ports:
       - "4566:4566"
-      - "4571:4571"
+      - "4510-4559:4510-4559"
     environment:
-      - SERVICES=s3,sqs,sns
       - DEBUG=1
+      - SERVICES=s3
+      - DATA_DIR=/var/lib/localstack/data
+      - AWS_DEFAULT_REGION=us-west-2
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - PERSISTENCE=1
     volumes:
-      - "./.localstack:/var/lib/localstack"
+      - "./localstack-data:/var/lib/localstack/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./init-localstack.sh:/etc/localstack/init/ready.d/init-localstack.sh"
