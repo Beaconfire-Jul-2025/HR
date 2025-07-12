@@ -25,3 +25,6 @@
 [submodule "Gateway"]
 	path = Gateway
 	url = git@github.com:Beaconfire-Jul-2025/Gateway.git
+[submodule "Config"]
+	path = Config
+	url = git@github.com:Beaconfire-Jul-2025/Config.git
