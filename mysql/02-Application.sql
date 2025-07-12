@@ -33,7 +33,7 @@ CREATE TABLE DigitalDocument (
 
 -- Add constraints and additional indexes
 ALTER TABLE ApplicationWorkFlow
-ADD CONSTRAINT chk_status CHECK (Status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED', 'REJECTED', 'CANCELLED'));
+ADD CONSTRAINT chk_status CHECK (Status IN ('OPEN', 'COMPLETED', 'REJECTED'));
 
 -- Optional: Create a junction table if documents are linked to specific workflow instances
 CREATE TABLE ApplicationWorkFlowDocument (

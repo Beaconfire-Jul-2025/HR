@@ -4,7 +4,7 @@ db.Employee.insertMany([
   // Employee 1: US Citizen
   {
     ID: "emp001",
-    UserID: "user_abc_123",
+    UserID: "3",
     FirstName: "Alice",
     LastName: "Smith",
     Email: "alice.smith@example.com",
@@ -53,7 +53,7 @@ db.Employee.insertMany([
   // Employee 2: Green Card Holder
   {
     ID: "emp002",
-    UserID: "user_def_456",
+    UserID: "4",
     FirstName: "Bob",
     LastName: "Johnson",
     Email: "bob.johnson@example.com",
@@ -89,7 +89,7 @@ db.Employee.insertMany([
   // Employee 3: H1B Work Authorization
   {
     ID: "emp003",
-    UserID: "user_ghi_789",
+    UserID: "5",
     FirstName: "Carol",
     LastName: "Davis",
     Email: "carol.davis@example.com",
@@ -119,7 +119,7 @@ db.Employee.insertMany([
   // Employee 4: L2 Work Authorization
   {
     ID: "emp004",
-    UserID: "user_jkl_012",
+    UserID: "6",
     FirstName: "David",
     LastName: "Miller",
     Email: "david.miller@example.com",
@@ -149,7 +149,7 @@ db.Employee.insertMany([
   // Employee 5: F1 Work Authorization (e.g., CPT/OPT)
   {
     ID: "emp005",
-    UserID: "user_mno_345",
+    UserID: "7",
     FirstName: "Eve",
     LastName: "White",
     Email: "eve.white@example.com",
