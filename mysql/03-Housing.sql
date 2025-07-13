@@ -55,6 +55,7 @@ CREATE TABLE FacilityReport (
     employeeId VARCHAR(100) NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT,
+    status ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
     createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
     FOREIGN KEY (facilityId) REFERENCES Facility(id) ON DELETE CASCADE,
