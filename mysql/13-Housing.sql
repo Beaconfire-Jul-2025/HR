@@ -20,11 +20,11 @@ INSERT INTO Facility (houseId, type, quantity, description) VALUES
 (4, 'Gym Access', 1, 'Access to community gym.'),
 (4, 'Swimming Pool', 1, 'Outdoor swimming pool.');
 
-INSERT INTO FacilityReport (facilityId, employeeId, title, description) VALUES
-(1, '3', 'Dishwasher not draining', 'Dishwasher fills with water but does not drain properly after cycle.'),
-(2, '4', 'Dryer making loud noise', 'Dryer unit emits a loud screeching sound during operation.'),
-(3, '5', 'Refrigerator not cooling', 'Food spoilage due to insufficient cooling in the refrigerator.'),
-(5, '6', 'AC filter replacement needed', 'Reduced airflow and unusual odor from AC vents.');
+INSERT INTO FacilityReport (facilityId, employeeId, title, description, status) VALUES
+(1, '3', 'Dishwasher not draining', 'Dishwasher fills with water but does not drain properly after cycle.', 'OPEN'),
+(2, '4', 'Dryer making loud noise', 'Dryer unit emits a loud screeching sound during operation.', 'CLOSED'),
+(3, '5', 'Refrigerator not cooling', 'Food spoilage due to insufficient cooling in the refrigerator.', 'IN_PROGRESS'),
+(5, '6', 'AC filter replacement needed', 'Reduced airflow and unusual odor from AC vents.', 'OPEN');
 
 INSERT INTO FacilityReportDetail (facilityReportId, employeeId, comment) VALUES
 (1, '4', 'Checked drain hose, no visible kinks.'),
