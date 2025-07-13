@@ -3,7 +3,7 @@ db = db.getSiblingDB('EmployeeService');
 db.Employee.insertMany([
   // Employee 1: US Citizen
   {
-    id: "emp001",
+    _id: "emp001",
     userId: "3",
     firstName: "Alice",
     lastName: "Smith",
@@ -52,7 +52,7 @@ db.Employee.insertMany([
   },
   // Employee 2: Green Card Holder
   {
-    id: "emp002",
+    _id: "emp002",
     userId: "4",
     firstName: "Bob",
     lastName: "Johnson",
@@ -88,7 +88,7 @@ db.Employee.insertMany([
   },
   // Employee 3: H1B Work Authorization
   {
-    id: "emp003",
+    _id: "emp003",
     userId: "5",
     firstName: "Carol",
     lastName: "Davis",
@@ -118,7 +118,7 @@ db.Employee.insertMany([
   },
   // Employee 4: L2 Work Authorization
   {
-    id: "emp004",
+    _id: "emp004",
     userId: "6",
     firstName: "David",
     lastName: "Miller",
@@ -148,7 +148,7 @@ db.Employee.insertMany([
   },
   // Employee 5: F1 Work Authorization (e.g., CPT/OPT)
   {
-    id: "emp005",
+    _id: "emp005",
     userId: "7",
     firstName: "Eve",
     lastName: "White",
