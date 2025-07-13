@@ -72,6 +72,7 @@ CREATE TABLE FacilityReportDetail (
     employeeId VARCHAR(100) NOT NULL,
     comment TEXT NOT NULL,
     createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
     FOREIGN KEY (facilityReportId) REFERENCES FacilityReport(id) ON DELETE CASCADE,
     INDEX idx_facility_report_id (facilityReportId),
