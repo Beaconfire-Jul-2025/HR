@@ -31,7 +31,7 @@ git submodule update --init --recursive
 This will start databases, message brokers, and developer tools like LocalStack and Mongo Express.
 
 ```bash
-docker-compose -f docker-compose.infra.yaml up -d
+docker-compose -f docker-compose.infra.yaml up -d --build
 ```
 
 ### 2. Start Core Backend Services
@@ -39,7 +39,7 @@ docker-compose -f docker-compose.infra.yaml up -d
 This will spin up infrastructure services, config server, service registry, API gateway, and authentication service.
 
 ```bash
-docker-compose -f docker-compose.base.yaml up -d
+docker-compose -f docker-compose.base.yaml up -d --build
 ```
 
 ---
