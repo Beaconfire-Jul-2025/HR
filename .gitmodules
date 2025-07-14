@@ -28,3 +28,6 @@
 [submodule "Config"]
 	path = Config
 	url = git@github.com:Beaconfire-Jul-2025/Config.git
+[submodule "CompositeService"]
+	path = CompositeService
+	url = git@github.com:Beaconfire-Jul-2025/CompositeService.git
