@@ -85,10 +85,11 @@ services:
     container_name: employee-service
     ports:
       - "8082:8082"
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
+    #environment:
+    #  SPRING_PROFILES_ACTIVE: docker
     depends_on:
       - mysql
+      - mongodb
       - config-server
       - eureka-server
 
