@@ -162,7 +162,7 @@ db.Employee.insertMany([
       endDate: new Date("2026-01-14T00:00:00Z"),
       lastModificationDate: new Date("2023-01-10T00:00:00Z")
     },
-    applicationType: "ONBOARD"
+    applicationType: "PROFILE"
   },
   // Employee 4: L2 Work Authorization
   {
@@ -192,7 +192,7 @@ db.Employee.insertMany([
       endDate: new Date("2025-08-31T00:00:00Z"),
       lastModificationDate: new Date("2021-08-25T00:00:00Z")
     },
-    applicationType: "ONBOARD"
+    applicationType: "PROFILE"
   },
   // Employee 5: F1 Work Authorization (e.g., CPT/OPT)
   {
@@ -222,7 +222,7 @@ db.Employee.insertMany([
       endDate: new Date("2025-05-31T00:00:00Z"),
       lastModificationDate: new Date("2024-05-28T00:00:00Z")
     },
-    applicationType: "ONBOARD"
+    applicationType: "PROFILE"
   }
 ]);
 
