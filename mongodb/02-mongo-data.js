@@ -1,6 +1,54 @@
 db = db.getSiblingDB('EmployeeService');
 
 db.Employee.insertMany([
+  {
+    _id: "emp101",
+    userId: "2",
+    firstName: "Alice",
+    lastName: "Smith",
+    email: "alice.smith@example.com",
+    middleName: "P.",
+    preferredName: "Ali",
+    avatarPath: "/avatars/alice.jpg",
+    cellPhone: "555-111-2222",
+    alternatePhone: "555-333-4444",
+    gender: "Female",
+    ssn: "999-88-7777",
+    dob: new Date("1990-05-15T00:00:00Z"),
+    startDate: new Date("2020-01-01T00:00:00Z"),
+    houseId: "house_xyz_789",
+    addresses: [
+      {
+        id: "addr001",
+        type: "PRIMARY",
+        addressLine1: "123 Main St",
+        city: "Anytown",
+        state: "CA",
+        zipCode: "90210"
+      }
+    ],
+    workAuthorization: {
+      isUsCitizen: true,
+      greenCardHolder: false,
+      type: "N/A" // US Citizen
+    },
+    driverLicense: {
+      hasLicense: true,
+      licenseNumber: "DL1234567",
+      expirationDate: new Date("2028-12-31T00:00:00Z")
+    },
+    emergencyContacts: [
+      {
+        id: "emc001",
+        firstName: "Bob",
+        lastName: "Smith",
+        relationship: "Spouse",
+        cellPhone: "555-555-6666",
+        email: "bob.smith@example.com"
+      }
+    ],
+    applicationType: "PROFILE"
+  },
   // Employee 1: US Citizen
   {
     _id: "emp001",
@@ -12,7 +60,7 @@ db.Employee.insertMany([
     preferredName: "Ali",
     avatarPath: "/avatars/alice.jpg",
     cellPhone: "555-111-2222",
-    workPhone: "555-333-4444",
+    alternatePhone: "555-333-4444",
     gender: "Female",
     ssn: "999-88-7777",
     dob: new Date("1990-05-15T00:00:00Z"),

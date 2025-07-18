@@ -38,9 +38,9 @@ db.createCollection("Employee", {
           bsonType: "string",
           description: "Employee cell phone - optional"
         },
-        workPhone: {
+        alternatePhone: {
           bsonType: "string",
-          description: "Employee work phone - optional"
+          description: "Employee alternate phone - optional"
         },
         gender: {
           bsonType: "string",
@@ -203,7 +203,7 @@ db.createCollection("Employee", {
               id: { bsonType: "string" },
               type: {
                 bsonType: "string",
-                enum: ["DRIVER_LICENSE_PROOF", "WORK_AUTHORIZATION_PROOF", "SSN_CARD", "PASSPORT", "OTHER"],
+                enum: ["DRIVER_LICENSE", "WORK_AUTHORIZATION", "PERSONAL_DOCUMENTS"],
                 description: "Type of document (e.g., DRIVER_LICENSE_PROOF, WORK_AUTHORIZATION_PROOF)"
               },
               path: {

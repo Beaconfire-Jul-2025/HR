@@ -9,10 +9,12 @@ CREATE TABLE ApplicationWorkFlow (
     lastModificationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'PENDING',
     comment TEXT,
+    applicationType VARCHAR(255),
     
     INDEX idx_employee_id (employeeId),
     INDEX idx_status (status),
-    INDEX idx_create_date (createDate)
+    INDEX idx_create_date (createDate),
+    INDEX idx_application_type (applicationType)
 );
 
 -- DigitalDocument table
@@ -34,17 +36,3 @@ CREATE TABLE DigitalDocument (
 -- Add constraints and additional indexes
 ALTER TABLE ApplicationWorkFlow
 ADD CONSTRAINT chk_status CHECK (status IN ('OPEN', 'COMPLETED', 'REJECTED', 'PENDING')); -- Added 'PENDING' to the check constraint
-
--- Optional: Create a junction table if documents are linked to specific workflow instances
-CREATE TABLE ApplicationWorkFlowDocument (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    applicationWorkFlowId INT NOT NULL,
-    digitalDocumentId INT NOT NULL,
-    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (applicationWorkFlowId) REFERENCES ApplicationWorkFlow(id) ON DELETE CASCADE,
-    FOREIGN KEY (digitalDocumentId) REFERENCES DigitalDocument(id) ON DELETE CASCADE,
-    UNIQUE KEY unique_workflow_document (applicationWorkFlowId, digitalDocumentId),
-    INDEX idx_workflow_id (applicationWorkFlowId),
-    INDEX idx_document_id (digitalDocumentId)
-);
