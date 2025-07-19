@@ -13,9 +13,6 @@
 [submodule "ApplicationService"]
 	path = ApplicationService
 	url = git@github.com:Beaconfire-Jul-2025/ApplicationService.git
-[submodule "Frontend"]
-	path = Frontend
-	url = git@github.com:Beaconfire-Jul-2025/Frontend.git
 [submodule "ConfigServer"]
 	path = ConfigServer
 	url = git@github.com:Beaconfire-Jul-2025/ConfigServer.git
@@ -31,3 +28,7 @@
 [submodule "CompositeService"]
 	path = CompositeService
 	url = git@github.com:Beaconfire-Jul-2025/CompositeService.git
+[submodule "Frontend"]
+	path = Frontend
+	url = git@github.com:Beaconfire-Jul-2025/Frontend.git
+	branch = main
