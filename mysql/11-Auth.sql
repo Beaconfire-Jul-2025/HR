@@ -7,8 +7,8 @@ INSERT INTO User (id, username, email, password, activeFlag) VALUES
 (4, 'user3', 'user3@example.com', '$2a$10$znERm4Oyojv5U5HX9riTsOr3SUcqvUNJewGx/OCHplgARe7FVfBHq', TRUE), -- password123
 (5, 'user4', 'user4@example.com', '$2a$10$znERm4Oyojv5U5HX9riTsOr3SUcqvUNJewGx/OCHplgARe7FVfBHq', TRUE), -- password123
 (6, 'user5', 'user5@example.com', '$2a$10$znERm4Oyojv5U5HX9riTsOr3SUcqvUNJewGx/OCHplgARe7FVfBHq', TRUE), -- password123
-(7, 'user6', 'user6@example.com', '$2a$10$znERm4Oyojv5U5HX9riTsOr3SUcqvUNJewGx/OCHplgARe7FVfBHq', TRUE); -- password123
-(121, 'admin', 'admin@example.com', '$2a$10$skzrTD6WdaCLsP/3Ujkpp.v37u8elsrn7BOcenY5Vhqsq/PzJtL2C', TRUE), -- adminadmin
+(7, 'user6', 'user6@example.com', '$2a$10$znERm4Oyojv5U5HX9riTsOr3SUcqvUNJewGx/OCHplgARe7FVfBHq', TRUE), -- password123
+(121, 'admin', 'admin@example.com', '$2a$10$skzrTD6WdaCLsP/3Ujkpp.v37u8elsrn7BOcenY5Vhqsq/PzJtL2C', TRUE); -- adminadmin
 
 INSERT INTO Role (roleName, roleDescription) VALUES
 ('ROLE_HR', 'HR with full system access'),
